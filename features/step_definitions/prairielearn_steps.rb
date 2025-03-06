@@ -10,8 +10,8 @@ module PrairieLearnHelpers
   end
   def question_path(qid, variant_seed=nil)
     variant_seed ?
-      "question/qid/#{qid}?variant_seed=#{variant_seed}" :
-      "question/qid/#{qid}"
+      "course_admin/questions/qid/#{qid}?variant_seed=#{variant_seed}" :
+      "course_admin/questions/qid/#{qid}"
   end
 end
 
@@ -51,5 +51,9 @@ Then /the overall score should be ([0-9.]+)/ do |score|
 end
 
 Then /show me the page/ do
-  save_and_open_page
+  screenshot_and_open_image
 end
+Then /save a screenshot/ do
+  screenshot_and_save_page
+end
+

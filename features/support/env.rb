@@ -1,6 +1,8 @@
+require 'rspec'
 require 'capybara'
 require 'capybara/dsl'
 require 'capybara/cucumber'
+require 'capybara-screenshot/cucumber'
 require 'selenium-webdriver'
 require 'byebug'
 
@@ -49,6 +51,5 @@ Capybara.register_driver :selenium_chrome_headless do |app|
     clear_local_storage: true)
 end
 Capybara.javascript_driver = :selenium_chrome_headless
-
 
 World(Capybara)
