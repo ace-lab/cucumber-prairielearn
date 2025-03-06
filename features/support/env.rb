@@ -2,6 +2,9 @@ require 'capybara'
 require 'capybara/dsl'
 require 'selenium-webdriver'
 
+$PL_HOME = ENV['PL_HOME'] || 'localhost:3000'
+
+
 Capybara.default_selector = :css
 Capybara.default_driver = :selenium
 Capybara.app_host = 'http://hostname-of-your-test-server.com'

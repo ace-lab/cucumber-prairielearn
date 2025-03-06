@@ -1,0 +1,3 @@
+- in Before(suite), load up the course or otherwise make sure it's
+present?
+
