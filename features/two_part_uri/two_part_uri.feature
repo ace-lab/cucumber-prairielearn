@@ -1,6 +1,11 @@
 Feature: build your own URI
 
   Background:
+    Given question "ch03_arch/two-part-uri" in course "CS 169: Introduction to Software Engineering"
+    Then show me the page
+
+  Scenario: partial credit
+    
     Given an instance of the question "two_part_uri"
     When I fill in the following responses:
       | field    | type     | response                |

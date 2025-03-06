@@ -9,7 +9,7 @@ module PrairieLearnHelpers
     link_to_course[:href]
   end
   def question_path(qid, variant_seed=nil)
-    variant_id ?
+    variant_seed ?
       "question/qid/#{qid}?variant_seed=#{variant_seed}" :
       "question/qid/#{qid}"
   end
@@ -41,7 +41,7 @@ When /I supply the following answers:/ do |fields|
     when 'dropdown'
       steps %Q{When I select "#{value}" from "#{name}"}
     when 'text'
-      steps %Q{When I 
+    end
   end
 
 end
@@ -50,3 +50,6 @@ Then /the overall score should be ([0-9.]+)/ do |score|
 
 end
 
+Then /show me the page/ do
+  save_and_open_page
+end

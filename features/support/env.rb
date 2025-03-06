@@ -1,13 +1,20 @@
 require 'capybara'
 require 'capybara/dsl'
+require 'capybara/cucumber'
 require 'selenium-webdriver'
+require 'byebug'
 
-$PL_HOME = ENV['PL_HOME'] || 'localhost:3000'
+$PL_HOME = ENV['PL_HOME'] || 'http://localhost:3000'
 
 
 Capybara.default_selector = :css
 Capybara.default_driver = :selenium
-Capybara.app_host = 'http://hostname-of-your-test-server.com'
+
+Capybara.configure do |config|
+  config.run_server = false
+  config.default_driver = :selenium_chrome_headless
+  config.app_host = $PL_HOME
+end
 
 path_to_chromedriver =       ENV['CHROMEDRIVER_PATH'] ||
                              `find ~+/tmp -type f -name 'chromedriver'`.chomp
@@ -15,7 +22,7 @@ path_to_chromedriver =       ENV['CHROMEDRIVER_PATH'] ||
 path_to_chrome_for_testing = ENV['CHROME_FOR_TESTING_PATH'] ||
                              `find ~+/tmp -type f -name 'Google Chrome for Testing'`.chomp
 
-if (path_to_chromedriver.blank? || path_to_chrome_for_testing.blank?)
+if (path_to_chromedriver.to_s == '' || path_to_chrome_for_testing.to_s == '')
   abort "Cannot find Chromedriver and/or ChromeForTesting binaries. Check wiki for instructions."
 end
 
